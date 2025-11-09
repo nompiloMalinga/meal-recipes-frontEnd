@@ -1,0 +1,7 @@
+<ul class="category-grid">
+  <li *ngFor="let cat of categories" class="category-item">
+    <img [src]="cat.strCategoryThumb" [alt]="cat.strCategory" width="150">
+    <strong>{{ cat.strCategory }}</strong>
+    <p>{{ cat.strCategoryDescription }}</p>
+  </li>
+</ul>
