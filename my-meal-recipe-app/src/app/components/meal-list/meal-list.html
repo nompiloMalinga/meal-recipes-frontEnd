@@ -1,4 +1,39 @@
-<ul class="category-grid">
+<mat-form-field>
+    <mat-label>Search by name</mat-label>
+    <input matInput
+    placeholder="Search meals..."
+    [(ngModel)]="searchTerm"
+    (input) ="onSearch()"
+    >
+</mat-form-field>
+
+<ul  *ngIf="searchTerm?.trim()" class="category-grid">
+  <li *ngFor="let meal of meals" class="category-item">
+    <img [src]="meal.strMealThumb" [alt]="meal.strMealThumb" width="150">
+    <p> <strong>{{meal.strMeal}}</strong> &nbsp; <em>{{meal.strCategory}} </em></p>
+    <p> <strong>{{meal.strArea}}</strong></p>
+    <p>{{meal.strInstructions}}</p>
+    <p>
+    <a *ngIf="meal.strYoutube"
+     [href]="meal.strYoutube"
+     target="_blank"
+     rel="noopener noreferrer">
+     Watch on YouTube
+  </a>
+</p>
+
+<p>
+  <a *ngIf="meal.strSource"
+     [href]="meal.strSource"
+     target="_blank"
+     rel="noopener noreferrer">
+     View Source
+  </a>
+</p>
+  </li>
+</ul>
+
+<ul class="category-grid" *ngIf="!searchTerm?.trim()">
   <li *ngFor="let cat of categories" class="category-item">
     <img [src]="cat.strCategoryThumb" [alt]="cat.strCategory" width="150">
     <strong>{{ cat.strCategory }}</strong>
